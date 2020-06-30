@@ -12,9 +12,8 @@ python train.py --num-steps 10  --num-episodes 1000 --eval-every 5 --log-every 5
 
 # TODOs:
 
-- Add the grid env and agents
-- Add the non-target agents
+- Add remaining agents
 - Add the rlllib envs
-- Update readmes
+- Update the README docs
 - Add the notebook
 
