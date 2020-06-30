@@ -119,8 +119,8 @@ def get_filename(args):
     elif args.agent == "sarsa":
         toprint += ['num_envs', 'traj_len', ]
     # bvf agents
-    elif args.agent == "safe-sarsa":
-        toprint += ['num_envs', 'traj_len', 'cost_reverse_lr', 'cost_q_lr', 'prioritized', ]
+    elif args.agent == "bvf-sarsa":
+        toprint += ['num_envs', 'traj_len', 'cost_reverse_lr', 'cost_q_lr', ]
     elif args.agent == "safe-ppo":
         toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta',
                     'ppo_updates', 'gae', 'clip', 'value_loss_coef', ]
@@ -131,7 +131,7 @@ def get_filename(args):
     elif args.agent == "lyp-a2c":
         toprint += ['num_envs', 'cost_q_lr', 'traj_len', 'beta', 'd0', 'cost_sg_coeff']
     elif args.agent == "lyp-sarsa":
-        toprint += ['num_envs', 'traj_len', 'cost_q_lr', 'prioritized', 'd0', 'cost_sg_coeff']
+        toprint += ['num_envs', 'traj_len', 'cost_q_lr', 'd0', 'cost_sg_coeff']
     elif args.agent == "lyp-ppo":
         toprint += ['num_envs', 'cost_q_lr', 'ppo_updates', 'traj_len', 'value_loss_coef', 'd0',
                     'cost_sg_coeff', 'prob_alpha']
@@ -139,7 +139,7 @@ def get_filename(args):
         raise Exception("Not implemented yet!!")
 
     # for every safe agent
-    if "safe" in args.agent:
+    if "safe" or "bvf" in args.agent:
         toprint += ['d0', 'cost_sg_coeff']
 
     # if early stopping for ppo

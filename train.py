@@ -7,20 +7,21 @@ import shutil
 from common.utils import *
 from common.arguments import get_args
 
-from agents.safe_ppo import SafePPOAgent
-from agents.a2c_agent import A2CAgent
-from agents.safe_a2c_v2_agent import SafeA2CProjectionAgent
+# SARSA agents
 from agents.sarsa_agent import SarsaAgent
 from agents.safe_sarsa_agent import SafeSarsaAgent
-
-from agents.lyp_a2c_agent import LyapunovA2CAgent
-from agents.lyp_ppo import LyapunovPPOAgent
 from agents.lyp_sarsa_agent import LypSarsaAgent
 
+# A2C based agents
+from agents.a2c_agent import A2CAgent
+from agents.lyp_a2c_agent import LyapunovA2CAgent
+from agents.safe_a2c_v2_agent import SafeA2CProjectionAgent
 
-# target based agents
+# PPO based agents
 from agents.ppo import PPOAgent
-
+from agents.safe_ppo import SafePPOAgent
+from agents.lyp_ppo import LyapunovPPOAgent
+# target based agents
 from agents.target_agents.target_bvf_ppo import TargetBVFPPOAgent
 from agents.target_agents.target_lyp_ppo import TargetLypPPOAgent
 
@@ -69,30 +70,34 @@ agent = None
 env = create_env(args)
 
 # create the agent here
-if args.agent == "a2c":
-    agent = A2CAgent(args, env, writer=tb_writer)
-elif args.agent == "safe-a2c":
-    agent = SafeA2CProjectionAgent(args, env, writer=tb_writer)
-elif args.agent == "sarsa":
-    agent = SarsaAgent(args, env, writer=tb_writer)
-elif args.agent == "safe-sarsa":
-    agent = SafeSarsaAgent(args, env, writer=tb_writer)
-elif args.agent == "lyp-a2c":
-    agent = LyapunovA2CAgent(args, env, writer=tb_writer)
-elif args.agent == "lyp-sarsa":
-    agent = LypSarsaAgent(args, env, writer=tb_writer)
+# PPO based agents
+if args.agent == "ppo":
+    agent = PPOAgent(args, env)
 elif args.agent == "bvf-ppo":
     if args.target:
         agent = TargetBVFPPOAgent(args, env)
     else:
         agent = SafePPOAgent(args, env, writer=tb_writer)
-elif args.agent == "ppo":
-    agent = PPOAgent(args, env)
 elif args.agent == "lyp-ppo":
     if args.target:
         agent = TargetLypPPOAgent(args, env)
     else:
         agent = LyapunovPPOAgent(args, env)
+# A2C based agents
+if args.agent == "a2c":
+    agent = A2CAgent(args, env, writer=tb_writer)
+elif args.agent == "safe-a2c":
+    agent = SafeA2CProjectionAgent(args, env, writer=tb_writer)
+elif args.agent == "lyp-a2c":
+    agent = LyapunovA2CAgent(args, env, writer=tb_writer)
+#  SARSA based agent
+elif args.agent == "sarsa":
+    agent = SarsaAgent(args, env, writer=tb_writer)
+elif args.agent == "bvf-sarsa":
+    agent = SafeSarsaAgent(args, env, writer=tb_writer)
+elif args.agent == "lyp-sarsa":
+    agent = LypSarsaAgent(args, env, writer=tb_writer)
+
 else:
     raise Exception("Not implemented yet")
 

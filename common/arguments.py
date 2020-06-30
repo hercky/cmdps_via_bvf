@@ -18,7 +18,15 @@ def get_args():
                             "pc: point circle env\n"\
                         )
 
-    parser.add_argument('--agent', default='ppo', help='the RL algo to use')
+    parser.add_argument('--agent', default='ppo',
+                        help="the RL algo to use\n"\
+                             "ppo: for ppo\n"\
+                             "lyp-ppo: for Lyapnunov based ppo\n" \
+                             "bvf-ppo: for Backward value function based ppo\n" \
+                             "sarsa: for n-step sarsa\n" \
+                             "lyp-sarsa: for Lyapnunov based sarsa\n"\
+                             "bvf-sarsa: for Backward Value Function based sarsa"\
+                        )
     parser.add_argument('--gamma', type=float, default=0.99, help="discount factor")
     parser.add_argument('--d0', type=float, default=5.0, help="the threshold for safety")
 
