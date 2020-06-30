@@ -110,23 +110,19 @@ def get_filename(args):
         toprint += ['num_envs', 'ppo_updates', 'gae', 'clip', 'traj_len', 'beta', 'value_loss_coef', ]
     elif args.agent == "a2c":
         toprint += ['num_envs', 'traj_len', 'critic_lr', 'beta']
-    #TODO: figure this stuff out
-    elif args.agent == "safe-a2c-v1":
-        # raise Exception("dont need this anymore ")
-        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta']
-    elif args.agent == "safe-a2c-v2":
-        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta']
     elif args.agent == "sarsa":
         toprint += ['num_envs', 'traj_len', ]
     # bvf agents
     elif args.agent == "bvf-sarsa":
         toprint += ['num_envs', 'traj_len', 'cost_reverse_lr', 'cost_q_lr', ]
-    elif args.agent == "safe-ppo":
-        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta',
-                    'ppo_updates', 'gae', 'clip', 'value_loss_coef', ]
+    # elif args.agent == "safe-ppo":
+    #     toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta',
+    #                 'ppo_updates', 'gae', 'clip', 'value_loss_coef', ]
     elif args.agent == "bvf-ppo":
-        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len',
+        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta', 'gae', 'clip',
                     'ppo_updates', 'd0', 'cost_sg_coeff', 'prob_alpha']
+    elif args.agent == "safe-a2c":
+        toprint += ['num_envs', 'cost_reverse_lr', 'cost_q_lr', 'traj_len', 'beta']
     # lyapunov agents
     elif args.agent == "lyp-a2c":
         toprint += ['num_envs', 'cost_q_lr', 'traj_len', 'beta', 'd0', 'cost_sg_coeff']

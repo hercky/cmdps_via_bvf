@@ -84,7 +84,7 @@ elif args.agent == "lyp-ppo":
     else:
         agent = LyapunovPPOAgent(args, env)
 # A2C based agents
-if args.agent == "a2c":
+elif args.agent == "a2c":
     agent = A2CAgent(args, env, writer=tb_writer)
 elif args.agent == "safe-a2c":
     agent = SafeA2CProjectionAgent(args, env, writer=tb_writer)
@@ -97,7 +97,6 @@ elif args.agent == "bvf-sarsa":
     agent = SafeSarsaAgent(args, env, writer=tb_writer)
 elif args.agent == "lyp-sarsa":
     agent = LypSarsaAgent(args, env, writer=tb_writer)
-
 else:
     raise Exception("Not implemented yet")
 
