@@ -9,10 +9,3 @@ python train.py --num-steps 10  --num-episodes 1000 --eval-every 5 --log-every 5
 `
 
 
-
-# TODOs:
-
-- Add remaining agents
-- Update the README docs
-- Add the notebook
-
